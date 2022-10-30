@@ -62,7 +62,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <form class="row g-3" method="post" action="bd/variavel.php">
+        <form class="row g-3" method="post" action="bd/variavel.php?funcao=cadastro" id="form" name="form">
           <div class="col-md-6">
             <label for="exampleFormControlTextarea1" class="form-label">Nome</label>
             <input class="form-control" id="exampleFormControlTextarea1" rows="3" 

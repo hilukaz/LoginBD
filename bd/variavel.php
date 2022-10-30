@@ -1,12 +1,16 @@
 <?php
-require_once("cadastro.php");
+$root =realpath($_SERVER["DOCUMENT_ROOT"]);
+require_once("$root/php/LoginBD1/bd/cadastro.php");
 class cadastroController{
 
     private $cadastro;
 
     public function __construct(){
+
         $this->cadastro = new Cadastro();
-        $this->incluir();
+        if (isset($_GET['funcao']) && $_GET['funcao'] == "cadastro"){
+            $this->incluir();
+        }
     }
 
     private function incluir(){
@@ -27,5 +31,9 @@ class cadastroController{
             echo "<script>alert('Erro ao gravar registro!');</script>";
         }
     }
+    public function listar(){
+        return $result=$this->cadastro->listar();
+    }
 }
 new cadastroController();
+?>

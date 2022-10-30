@@ -37,5 +37,30 @@ class Banco{
         }
 
     }
+    public function getAgendamentos(){
+        try {
+            $stmt=$this->mysqli->query("SELECT * FROM tabela");
+            $lista = $stmt->fetch_all(MYSQLI_ASSOC);
+            $f_lista=array();
+            $i=0;
+            foreach ($lista as $l ) {
+                
+                $f_lista[$i]['txtNome']=$l['nome'];
+                $f_lista[$i]['txtEndereço']=$l['endereço'];
+                $f_lista[$i]['txtBairro']=$l['bairro'];
+                $f_lista[$i]['txtCep']=$l['cep'];
+                $f_lista[$i]['txtCidade']=$l['cidade'];
+                $f_lista[$i]['txtEstado']=$l['estado'];
+                $f_lista[$i]['txtEmail']=$l['email'];
+                $f_lista[$i]['txtSenha']=$l['senha'];
+                $i++;
+                # code...
+            }
+            return $f_lista;
+        } catch (Exception $e) {
+            echo "Ocorreu um erro ao tentar buscar todos";
+            //throw $th;
+        }
+    }
 }    
 ?>

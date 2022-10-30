@@ -68,5 +68,9 @@ class Cadastro extends Banco {
         return $this->setAgendamentos($this->getNome(),$this->getEndereco(),$this->getBairro(),$this->getCep(),$this->getCidade(),$this->getEstado(),$this->getEmail(),$this->getSenha());
         //executa o método com esse parametro
     }
+
+    public function listar(){
+        return $this ->getAgendamentos();
+    }
 }
 ?>
