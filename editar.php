@@ -1,3 +1,6 @@
+<?php
+    require_once("bd/variavel.php");
+?>
 <!doctype html>
 <html lang="pt-br">
 
@@ -52,7 +55,7 @@
       <div class="col">
         <nav class="navbar bg-light">
           <div class="container-fluid">
-            <a class="navbar-brand">Cadastro de usuários</a>
+            <a class="navbar-brand">Alteração do Dado</a>
           </div>
         </nav>
       </div>
