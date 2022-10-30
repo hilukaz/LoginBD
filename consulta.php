@@ -1,3 +1,6 @@
+<?php
+  require_once("bd/variavel.php");
+?>
 <!doctype html>
 <html lang="pt-br">
 
@@ -63,39 +66,38 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Nome</th>
-          <th scope="col">Usuário</th>
-          <th scope="col">Ações</th>
-        </tr>
-      </thead>
-      <tbody>
+        <tbody id="TableData">
+          <?php
+          $controller=new cadastroController();
+          $resultado=$controller->listar();
+
+          for ($i=0; $i <count($resultado) ; $i++) { 
+              # code...
+          
+          ?>
+
         <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>
-            <button type="button" class="btn btn-dark">Editar</button>
+          
+          <td scope="col"><?php echo $resultado[$i]['id']; ?></td>
+          <td scope="col"><?php echo $resultado[$i]['txtNome']; ?></td>
+          <td scope="col"><?php echo $resultado[$i]['txtEndereço']; ?></td>
+          <td scope="col"><?php echo $resultado[$i]['txtBairro']; ?></td>
+          <td scope="col"><?php echo $resultado[$i]['txtCep']; ?></td>
+          <td scope="col"><?php echo $resultado[$i]['txtCidade']; ?></td>
+          <td scope="col"><?php echo $resultado[$i]['txtEstado']; ?></td>
+          <td scope="col"><?php echo $resultado[$i]['txtEmail']; ?></td>
+          <td scope="col"><?php echo $resultado[$i]['txtSenha']; ?></td>
+          <td scope="col">
+          
+            <button type="button" class="btn btn-dark" onclick="location.href='editar.php'" style="width 72px" >Editar</button>
             <button type="button" class="btn btn-dark">Excluir</button>
-          </td>
+        </td>
+          
         </tr>
+        <?php
+          }
+        ?>
         <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>
-            <button type="button" class="btn btn-dark">Editar</button>
-            <button type="button" class="btn btn-dark">Excluir</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td colspan="2">Larry the Bird</td>
-          <td>
-            <button type="button" class="btn btn-dark">Editar</button>
-            <button type="button" class="btn btn-dark">Excluir</button>
-          </td>
-        </tr>
       </tbody>
     </table>
 </body>
