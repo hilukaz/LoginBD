@@ -1,3 +1,7 @@
+<?php
+  require_once("bd/variavel.php");
+  
+?>
 <!doctype html>
 <html lang="pt-br">
 
@@ -63,39 +67,49 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Id</th>
           <th scope="col">Nome</th>
-          <th scope="col">Usuário</th>
-          <th scope="col">Ações</th>
+          <th scope="col">Endereço</th>
+          <th scope="col">Bairro</th>
+          <th scope="col">Cep</th>
+          <th scope="col">Cidade</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Email</th>
+          <th scope="col">Senha</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="TableData">
+          <?php
+          $controller=new cadastroController();//instancia
+          $resultado=$controller->listar(0);//aplica o resultado e executa o método
+
+          for ($i=0; $i <count($resultado) ; $i++) { //trabalhando com matriz
+              # code...
+              //se a quantidade de resultado for menor que $i faça
+          
+          ?>
+
         <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>
-            <button type="button" class="btn btn-dark">Editar</button>
-            <button type="button" class="btn btn-dark">Excluir</button>
-          </td>
+          <td scope="col"><?php echo $resultado[$i]['txtNome']; ?></td><!--matriz-->
+          <td scope="col"><?php echo $resultado[$i]['txtEndereço']; ?></td>
+          <td scope="col"><?php echo $resultado[$i]['txtBairro']; ?></td>
+          <td scope="col"><?php echo $resultado[$i]['txtCep']; ?></td>
+          <td scope="col"><?php echo $resultado[$i]['txtCidade']; ?></td>
+          <td scope="col"><?php echo $resultado[$i]['txtEstado']; ?></td>
+          <td scope="col"><?php echo $resultado[$i]['txtEmail']; ?></td>
+          <td scope="col"><?php echo $resultado[$i]['txtSenha']; ?></td>
+          <td scope="col">
+            
+          <button type="button" class="btn btn-dark" onclick="location.href='editar.php?id=<?php echo $resultado[$i]['id']; ?>'" style="width 72px" >Editar</button><!--vai pro editar junto da matriz do id-->
+          <button type="button" class="btn btn-dark" onclick="location.href='excluir.php?id=<?php echo $resultado[$i]['id']; ?>'" style="width 72px" >Excluir</button><!--vai pro excluir junto da matriz do id-->
+          
+                             
+        </td>
+          
         </tr>
+        <?php
+          }
+        ?>
         <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>
-            <button type="button" class="btn btn-dark">Editar</button>
-            <button type="button" class="btn btn-dark">Excluir</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td colspan="2">Larry the Bird</td>
-          <td>
-            <button type="button" class="btn btn-dark">Editar</button>
-            <button type="button" class="btn btn-dark">Excluir</button>
-          </td>
-        </tr>
       </tbody>
     </table>
 </body>

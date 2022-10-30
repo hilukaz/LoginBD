@@ -1,3 +1,6 @@
+<?php
+    require_once("bd/variavel.php");
+?>
 <!doctype html>
 <html lang="pt-br">
 
@@ -52,7 +55,7 @@
       <div class="col">
         <nav class="navbar bg-light">
           <div class="container-fluid">
-            <a class="navbar-brand">Cadastro de usuários</a>
+            <a class="navbar-brand">Alteração do Dado</a>
           </div>
         </nav>
       </div>
@@ -62,36 +65,41 @@
     </div>
     <div class="row">
       <div class="col">
-        <form class="row g-3" method="post" action="bd/variavel.php?funcao=cadastro" id="form" name="form">
-          <!--apos apertar o botão submit, ele vai pra página variável atribuindo a funcao = cadastro-->
+      <?php
+        $controller = new cadastroController();
+        
+        $resultado = $controller->listar($_GET['id']);//pega só o id
+      ?>
+
+        <form class="row g-3" method="post" action="bd/variavel.php?funcao=editar&id=<?php echo $resultado[0]['id']; ?>" id="form" name="form"><!--variavel, atribui funcao=editar e id=matriz da consulta-->
           <div class="col-md-6">
             <label for="exampleFormControlTextarea1" class="form-label">Nome</label>
-            <input class="form-control" id="exampleFormControlTextarea1" rows="3" 
-            type="text" name="txtNome" required id="txtNome"></textarea>
+            <input class="form-control" id="exampleFormControlTextarea1" rows="3" value="<?php echo $resultado[0]['txtNome']; ?>"
+            type="text" name="txtNome" required id="txtNome"></textarea> <!--exibe o resultado com base na matriz-->
           </div>
           <div class="col-md-6">
             <label for="exampleFormControlTextarea1" class="form-label">Endereço</label>
-            <input class="form-control" id="exampleFormControlTextarea1" rows="3"
+            <input class="form-control" id="exampleFormControlTextarea1" rows="3" value="<?php echo $resultado[0]['txtEndereço']; ?>"
             type="text" name="txtEndereco" required id="txtEndereco"></textarea>
           </div>
           <div class="col-12">
             <label for="exampleFormControlTextarea1" class="form-label">Bairro</label>
-            <input class="form-control" id="exampleFormControlTextarea1" rows="3"
+            <input class="form-control" id="exampleFormControlTextarea1" rows="3" value="<?php echo $resultado[0]['txtBairro']; ?>"
             type="text" name="txtBairro" required id="txtBairro"></textarea>
           </div>
           <div class="col-6">
             <label for="exampleFormControlTextarea1" class="form-label">Cep</label>
-            <input class="form-control" id="exampleFormControlTextarea1" rows="3"
+            <input class="form-control" id="exampleFormControlTextarea1" rows="3" value="<?php echo $resultado[0]['txtCep']; ?>"
             type="text" name="txtCep" required id="txtCep" placeholder="xxxxx-xxx"></textarea>
           </div>
           <div class="col-md-3">
             <label for="exampleFormControlTextarea1" class="form-label">Cidade</label>
-            <input class="form-control" id="exampleFormControlTextarea1" rows="3"
+            <input class="form-control" id="exampleFormControlTextarea1" rows="3" value="<?php echo $resultado[0]['txtCidade']; ?>"
             type="text" name="txtCidade" required id="txtCidade"></textarea>
           </div>
           <div class="col-md-3">
             <label for="exampleFormControlTextarea1" class="form-label">Estado</label>
-            <select class="form-select" aria-label="Default select example"
+            <select class="form-select" aria-label="Default select example" value="<?php echo $resultado[0]['txtEstado']; ?>"
             name="txtEstado" required id="txtEstado">
 
               <option value="AC">AC</option>
@@ -152,17 +160,17 @@
           </div>
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Email</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com"
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" value="<?php echo $resultado[0]['txtEmail']; ?>"
             type="email" name="txtEmail" required id="txtEmail">
           </div>
           <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Senha</label>
-            <input class="form-control" id="exampleFormControlTextarea1" rows="3"
+            <input class="form-control" id="exampleFormControlTextarea1" rows="3" value="<?php echo $resultado[0]['txtSenha']; ?>"
             type="password" name="txtSenha" required id="txtSenha"></textarea>
 
           </div>
           <div class="mb-3">
-            <button type="submit" class="btn btn-dark">Cadastrar</button>
+            <button type="submit" class="btn btn-dark">Editar</button>
           </div>
         </form>
       </div>
